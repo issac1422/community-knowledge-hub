@@ -1,0 +1,18 @@
+# Flutter
+/.dart_tool/
+/.build/
+.flutter-plugins
+.packages
+.pub-cache/
+/build/
+.idea/
+android/.gradle
+ios/Pods
+
+# Rust
+/target/
+**/*.rs.bk
+
+# General
+.env
+.DS_Store
