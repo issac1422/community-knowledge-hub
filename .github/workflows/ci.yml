@@ -3,9 +3,27 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  rust-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run echo
-        run: echo "CI pipeline works!"
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Build backend
+        run: |
+          cd backend
+          cargo build --verbose
+
+  flutter-analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+      - name: flutter analyze
+        run: |
+          cd app
+          flutter pub get
+          flutter analyze
